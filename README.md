@@ -22,7 +22,7 @@ You can clone & deploy it to Vercel with one click:
 You can clone & create this repo with the following command
 
 ```bash
-npx create-next-app nextjs-typescript-starter --example "https://github.com/vercel/nextjs-postgres-auth-starter"
+npx create-next-app nextjs-typescript-starter --example "https://github.com/Leinks/eAuth.git"
 ```
 
 ## Getting Started

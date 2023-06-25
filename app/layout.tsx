@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description,
   },
   metadataBase: new URL("https://nextjs-postgres-auth.vercel.app"),
-  themeColor: "#FFF",
+  themeColor: "#141414",
 };
 
 export default async function RootLayout({
@@ -34,14 +34,16 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.variable}>
-        <Toaster />
-        <Suspense fallback="Loading...">
-          {/* @ts-expect-error Async Server Component */}
-          <AuthStatus />
-        </Suspense>
-        {children}
-      </body>
+      
+        <body className={inter.variable}>
+          <Toaster />
+          <Suspense fallback="Loading...">
+            {/* "@ts-expect-error Async Server Component" */}
+            <AuthStatus />
+          </Suspense>
+          {children}
+        </body>
+  
     </html>
   );
 }
