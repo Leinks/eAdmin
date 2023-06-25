@@ -9,7 +9,7 @@ type LoginLayaoutProps = {
   export const LoginLayaout = (props: LoginLayaoutProps) => {
     return (
 
-    <div className=" bg-cover  border-black h-screen w-screen bg-[url('https://ik.imagekit.io/q5edmtudmz/peter-lloyd-680526-unsplash_TYZn4kayG.jpg')] bg-fixed">
+    <div className=" bg-cover  border-black h-screen w-screen bg-[url('https://ik.imagekit.io/q5edmtudmz/peter-lloyd-680526-unsplash_TYZn4kayG.jpg')]">
         <div className="content px-8 py-6">
           <nav className="flex items-center justify-between">
               <h2 className="text-gray-200 font-bold text-2xl ">Sea</h2>
