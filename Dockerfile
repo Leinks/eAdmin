@@ -1,36 +1,18 @@
 FROM node:18-alpine AS deps
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
-
-COPY package.json ./
-RUN  npm install --production
-
-FROM node:18-alpine AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-
-ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN npm run build
+# Create a node project using npm 6 and install a dev dependency
+# that contains a binary.
+RUN npm init --yes && \
+    npm install --save-dev typescript
 
 FROM node:18-alpine AS runner
+COPY --from=npm6 /app/package*.json /app/
 WORKDIR /app
+# Install production dependencies, then all dependencies. This should
+# link the binaries for typescript in (e.g. tsc) under node_modules/.bin.
+RUN npm install -g npm@7.10.0 && \
+    npm install --production && \
+    npm install
 
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-
-USER nextjs
-
-EXPOSE 3000
-
-ENV PORT 3000
-
-CMD ["npm", "dev"]
+# Causes error, tsc not found.
+CMD ["npx", "-c", "tsc --version"]
