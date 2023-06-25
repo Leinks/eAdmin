@@ -16,4 +16,4 @@ RUN npm install -g npm@7.10.0 && \
 
 # Causes error, tsc not found.
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["npm", "dev"]
