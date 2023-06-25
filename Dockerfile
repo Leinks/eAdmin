@@ -15,4 +15,5 @@ RUN npm install -g npm@7.10.0 && \
     npm install
 
 # Causes error, tsc not found.
-CMD ["npx", "-c", "tsc --version"]
+EXPOSE 3000
+CMD ["npm", "start"]
