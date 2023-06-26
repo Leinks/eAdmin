@@ -1,5 +1,6 @@
 "use client";
 
+import AuthStatus from "@/components/auth-status";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -18,7 +19,7 @@ const UserAreaSelectBox = () => {
       <>
          <div className="flex flex-col justify-center items-center relative z-30">
             <div onClick={() => setOpen((prev) => !prev)} className="p-2 cursor-pointer">
-               <span className="border-2 border-blue-600 p-1 rounded-lg">User Area</span>
+               <AuthStatus />
             </div>
             <div
                className={`flex flex-col bg-sky-100 w-40 my-2 rounded-lg ${

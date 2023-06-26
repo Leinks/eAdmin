@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Form from "@/components/form";
 import Link from "next/link";
-import {LoginLayaout} from "@/components/login-layaout";
+import {LoginLayaout} from "@/components/layout/layout_sections/LoginLayout";
 
 export default function Login() {
   return (

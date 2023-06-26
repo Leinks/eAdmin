@@ -5,6 +5,8 @@ import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import AuthStatus from "@/components/auth-status";
 import { Suspense } from "react";
+import MainLayout from "@/components/layout/MainLayout";
+import MenuContextProvider from "context/MenuContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
   themeColor: "#141414",
 };
 
-export default async function RootLayout({
+export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
@@ -36,13 +38,14 @@ export default async function RootLayout({
     <html lang="en">
       
         <body className={inter.variable}>
-
+        <MenuContextProvider>
           <Toaster />
-          <Suspense fallback="Loading...">
-            {/* "@ts-expect-error Async Server Component" */}
-            <AuthStatus />
-          </Suspense>
-          {children}
+            <Suspense fallback="Loading...">
+                {/* "@ts-expect-error Async Server Component" */}
+                
+            </Suspense>
+            <MainLayout>{children}</MainLayout> 
+          </MenuContextProvider>
         </body>
   
     </html>
