@@ -48,6 +48,8 @@ const HorizontalScrollbarPage = () => {
    console.log(users);
 
    return (
+ 
+     
       <div className="bg-white rounded-lg mx-4 p-4">
          <h1>HorizontalScrollbarPage</h1>
          <br />
@@ -55,12 +57,14 @@ const HorizontalScrollbarPage = () => {
          <h1 className="text-blue-800 text-2xl">YouTube categories</h1>
          <HorizontalScrollbar>
             {categories.map((item, index) => (
+            <React.Fragment key={index}>
                <div
                   key={index}
                   className="border-2 border-gray-200 p-1 shrink-0 rounded-lg hover:border-gray-400 cursor-pointer"
                >
                   <h1>{item}</h1>
                </div>
+            </React.Fragment>
             ))}
          </HorizontalScrollbar>
          <br />
@@ -68,6 +72,7 @@ const HorizontalScrollbarPage = () => {
          <h1 className="text-blue-800 text-2xl">Instagram Stories</h1>
          <HorizontalScrollbar>
             {users.map((item) => (
+            <React.Fragment key={item.id}>
                <div className="shrink-0">
                   <img
                      src={item.image}
@@ -75,9 +80,11 @@ const HorizontalScrollbarPage = () => {
                      className="w-14 h-14 rounded-full cursor-pointer hover:scale-125 transition-all duration-200"
                   />
                </div>
+             </React.Fragment>
             ))}
          </HorizontalScrollbar>
       </div>
+  
    );
 };
 

@@ -1,12 +1,13 @@
 'use client';
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 
-const TabsComponent = ({ items }) => {
+const TabsComponent = ({items}:{items:Number}) => {
   const [selectedTab, setSelectedTab] = useState(0);
-  const firstBtnRef = useRef();
+  const firstBtnRef = useRef<Number>();
 
   useEffect(() => {
-    firstBtnRef.current.focus();
+    firstBtnRef.current?.focus();
   }, []);
 
   return (
@@ -14,6 +15,7 @@ const TabsComponent = ({ items }) => {
       <div className='max-w-md flex flex-col gap-y-2 w-full'>
         <div className='bg-blue-400 p-1  rounded-xl flex justify-between items-center gap-x-2 font-bold text-white'>
           {items.map((item, index) => (
+            <React.Fragment key={item.id}>
             <button
               ref={index === 0 ? firstBtnRef : null}
               key={index}
@@ -24,14 +26,17 @@ const TabsComponent = ({ items }) => {
             >
               {item.title}
             </button>
+            </React.Fragment>
           ))}
         </div>
 
         <div className='bg-white p-2 rounded-xl'>
           {items.map((item, index) => (
+            <React.Fragment>
             <div className={`${selectedTab === index ? '' : 'hidden'}`}>
               {item.content}
             </div>
+            </React.Fragment>
           ))}
         </div>
       </div>
